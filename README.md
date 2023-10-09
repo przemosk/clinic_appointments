@@ -25,6 +25,92 @@ To make doctor's work more efficient ( and easier ), I prepared some API for man
 - **[DELETE]'localhost:3000/api/v1/appointments/remove_visit** --> Endpoint which removing created appointment. Accepted params: `appointment_id`
 
 
+```
+EXAMPLE REQUEST:
+
+curl -X GET http://localhost:3000/api/v1/doctors/working_hours -H "Content-Type: application/json" -d '{"doctor_id":"1"}'
+```
+
+```
+EXAMPLE RESPONSE:
+
+{
+   "data":[
+      {
+         "id":"1",
+         "type":"avability",
+         "attributes":{
+            "id":1,
+            "start_time":"11am",
+            "end_time":"7pm",
+            "weekday":"Sunday"
+         }
+      },
+      {
+         "id":"2",
+         "type":"avability",
+         "attributes":{
+            "id":2,
+            "start_time":"11am",
+            "end_time":"2pm",
+            "weekday":"Monday"
+         }
+      },
+      {
+         "id":"3",
+         "type":"avability",
+         "attributes":{
+            "id":3,
+            "start_time":"10am",
+            "end_time":"9pm",
+            "weekday":"Tuesday"
+         }
+      },
+      {
+         "id":"4",
+         "type":"avability",
+         "attributes":{
+            "id":4,
+            "start_time":"11am",
+            "end_time":"4pm",
+            "weekday":"Wednesday"
+         }
+      },
+      {
+         "id":"5",
+         "type":"avability",
+         "attributes":{
+            "id":5,
+            "start_time":"10am",
+            "end_time":"6pm",
+            "weekday":"Thursday"
+         }
+      },
+      {
+         "id":"6",
+         "type":"avability",
+         "attributes":{
+            "id":6,
+            "start_time":"8am",
+            "end_time":"6pm",
+            "weekday":"Friday"
+         }
+      },
+      {
+         "id":"7",
+         "type":"avability",
+         "attributes":{
+            "id":7,
+            "start_time":"7am",
+            "end_time":"7pm",
+            "weekday":"Saturday"
+         }
+      }
+   ]
+}
+
+```
+
 ## MODELS OVERVIEW
 
 **Doctor**

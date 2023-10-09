@@ -10,7 +10,9 @@ To make doctor's work more efficient ( and easier ), I prepared some API for man
 * run `bundle install`
 * run `rails db:create`
 * run `rails db:migrate`
-* run `rails db:seeds` --> create by default: Doctors, Avability for them ( 7 days ) and Patient's
+* run `rails db:seed` --> create by default: Doctors, Avability for them ( 7 days ) and Patient's
+
+* run `rails s` --> run app
 
 ## ENDPOINTS OVERVIEW
 

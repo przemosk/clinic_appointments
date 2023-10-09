@@ -16,12 +16,12 @@ To make doctor's work more efficient ( and easier ), I prepared some API for man
 
 ## ENDPOINTS OVERVIEW
 
-- **[GET] localhost:3000/api/v1/doctors/available_slots** --> Endpoint returning appointments which are free to be booked by patients
+- **[GET] /api/v1/doctors/available_slots** --> Endpoint returning appointments which are free to be booked by patients
   Accepted params: `doctor_id`
-- **[GET] localhost:3000/api/v1/doctors/working_hours** --> Endpoint returning doctors working hours in a 12-hour format. Accepted params: `doctor_id`
+- **[GET] /api/v1/doctors/working_hours** --> Endpoint returning doctors working hours in a 12-hour format. Accepted params: `doctor_id`
 
-- **[PUT] localhost:3000/api/v1/appointments/book_visit** --> The endpoint which booking visits for patients. Accepted params: `appointment_id` and `patient_id`
-- **[PUT] localhost:3000/api/v1/appointments/update_visit** --> Endpoint which updating appointments. Accepted params: `appointment_id`,`cancelled`, `appointment_date`, `doctor_id`. Allowed fields for update: `cancelled`, `appointment_date`, `doctor_id`
+- **[PUT] /api/v1/appointments/book_visit** --> The endpoint which booking visits for patients. Accepted params: `appointment_id` and `patient_id`
+- **[PUT] /api/v1/appointments/update_visit** --> Endpoint which updating appointments. Accepted params: `appointment_id`,`cancelled`, `appointment_date`, `doctor_id`. Allowed fields for update: `cancelled`, `appointment_date`, `doctor_id`
 - **[DELETE]'localhost:3000/api/v1/appointments/remove_visit** --> Endpoint which removing created appointment. Accepted params: `appointment_id`
 
 

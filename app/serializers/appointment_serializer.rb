@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AppointmentSerializer
   include JSONAPI::Serializer
 
@@ -11,7 +13,7 @@ class AppointmentSerializer
     entry.doctor.specialization
   end
 
-  attribute :patient, if: Proc.new { |entry| entry.patient.present? } do |object|
+  attribute :patient, if: proc { |entry| entry.patient.present? } do |object|
     object.patient.full_name
   end
 

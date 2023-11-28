@@ -10,20 +10,22 @@ medical_speciality = %w[Psychiatry Pediatrics Surgery]
 start_time = %w[8am 9am 7am 10am 11am]
 end_time = %w[2pm 3pm 4pm 6pm 7pm 8pm 9pm]
 
-20.times do |i|
- doc = Doctor.create!(
-        first_name: FFaker::NameNL.first_name,
-        last_name: FFaker::NameNL.last_name,
-        specialization: medical_speciality.sample,
-        email: FFaker::Internet.email
-       )
+20.times do |_i|
+  doc = Doctor.create!(
+    first_name: FFaker::NameNL.first_name,
+    last_name: FFaker::NameNL.last_name,
+    specialization: medical_speciality.sample,
+    email: FFaker::Internet.email
+  )
 
- 7.times { |i| Avability.create(doctor_id: doc.id, start_time: start_time.sample, end_time: end_time.sample, weekday: i) }
+  7.times do |i|
+    Avability.create(doctor_id: doc.id, start_time: start_time.sample, end_time: end_time.sample, weekday: i)
+  end
 
- puts doc.full_name
+  puts doc.full_name
 end
 
-20.times do |i|
+20.times do |_i|
   Patient.create!(
     first_name: FFaker::NameNL.first_name,
     last_name: FFaker::NameNL.last_name,

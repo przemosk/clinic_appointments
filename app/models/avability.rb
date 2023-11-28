@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Avability < ApplicationRecord
   belongs_to :doctor, inverse_of: :avabilities
 
@@ -13,11 +15,11 @@ class Avability < ApplicationRecord
   def create_appointments
     slots = calculate_appoitments_day
     slots.each do |day|
-      first_slot = day + Time.parse(self.start_time).seconds_since_midnight.seconds
-      last_slot = day + (Time.parse(self.end_time).seconds_since_midnight.seconds - Appointment::DURATION_TIME)
+      first_slot = day + Time.parse(start_time).seconds_since_midnight.seconds
+      last_slot = day + (Time.parse(end_time).seconds_since_midnight.seconds - Appointment::DURATION_TIME)
 
       (first_slot.to_i..last_slot.to_i).step(Appointment::DURATION_TIME) do |slot_date|
-        self.doctor.appointments.create!(appointment_date: Time.zone.at(slot_date).to_datetime)
+        doctor.appointments.create!(appointment_date: Time.zone.at(slot_date).to_datetime)
       end
     end
   end

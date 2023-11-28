@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Api::V1::Appointments", type: :request do
-  describe "PUT /create" do
+RSpec.describe 'Api::V1::Appointments', type: :request do
+  describe 'PUT /create' do
     let!(:doctor) { create(:doctor) }
-    let!(:appointment) { create(:appointment, doctor: doctor) }
+    let!(:appointment) { create(:appointment, doctor:) }
     let!(:patient) { create(:patient) }
 
     context 'with valid params' do
@@ -17,13 +19,12 @@ RSpec.describe "Api::V1::Appointments", type: :request do
       it 'assing Patient to doctor appointment' do
         expect(patient.appointments.size).to eq 0
 
-        put "/api/v1/appointments/book_visit", params: payload
+        put '/api/v1/appointments/book_visit', params: payload
 
         expect(response.status).to eq 201
         expect(JSON.parse(response.body)['data']).not_to be_empty
         expect(patient.appointments.reload.size).to eq 1
       end
-
     end
 
     context 'with invalid params' do
@@ -35,18 +36,17 @@ RSpec.describe "Api::V1::Appointments", type: :request do
       end
 
       it 'return errors' do
-        put "/api/v1/appointments/book_visit", params: payload
+        put '/api/v1/appointments/book_visit', params: payload
 
         expect(response.status).to eq 404
         expect(response.body).to eq 'record_not_found'
       end
-
     end
   end
 
-  describe "PUT /update" do
+  describe 'PUT /update' do
     let!(:doctor) { create(:doctor) }
-    let!(:appointment) { create(:appointment, doctor: doctor) }
+    let!(:appointment) { create(:appointment, doctor:) }
     let!(:new_doctor) { create(:doctor) }
     let!(:patient) { create(:patient) }
 
@@ -61,7 +61,7 @@ RSpec.describe "Api::V1::Appointments", type: :request do
       end
 
       it 'update succesfully' do
-        put "/api/v1/appointments/update_visit", params: payload
+        put '/api/v1/appointments/update_visit', params: payload
 
         expect(response.status).to eq 201
 
@@ -75,13 +75,12 @@ RSpec.describe "Api::V1::Appointments", type: :request do
         {
           appointment_id: appointment.id,
           cancelled: nil,
-          appointment_date: nil,
-          doctor_id: nil
+          appointment_date: nil
         }
       end
 
       it 'return succesfully' do
-        put "/api/v1/appointments/update_visit", params: payload
+        put '/api/v1/appointments/update_visit', params: payload
 
         expect(response.status).to eq 201
       end
@@ -99,21 +98,21 @@ RSpec.describe "Api::V1::Appointments", type: :request do
       end
 
       it 'return succesfully' do
-        put "/api/v1/appointments/update_visit", params: payload
+        put '/api/v1/appointments/update_visit', params: payload
 
         expect(response.status).to eq 201
       end
     end
   end
 
-  describe "DELETE /destroy" do
+  describe 'DELETE /destroy' do
     let!(:appointment) { create(:appointment) }
 
     context 'with valid params' do
       let(:payload) { { appointment_id: appointment.id } }
 
       it 'destroy entity succesfully' do
-        delete "/api/v1/appointments/remove_visit", params: payload
+        delete '/api/v1/appointments/remove_visit', params: payload
 
         expect(response.status).to eq 204
       end
@@ -123,7 +122,7 @@ RSpec.describe "Api::V1::Appointments", type: :request do
       let(:payload) { { appointment_id: nil } }
 
       it 'return error record not found' do
-        delete "/api/v1/appointments/remove_visit", params: payload
+        delete '/api/v1/appointments/remove_visit', params: payload
 
         expect(response.status).to eq 404
         expect(response.body).to eq 'record_not_found'

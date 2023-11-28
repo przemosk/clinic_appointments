@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeAvabilityColumnMigration < ActiveRecord::Migration[7.0]
   def change
     change_column :avabilities, :start_time, :string, null: false, index: true

@@ -28,7 +28,7 @@ To make doctor's work more efficient ( and easier ), I prepared some API for man
 ```
 EXAMPLE REQUEST:
 
-curl -X GET http://localhost:3000/api/v1/doctors/working_hours -H "Content-Type: application/json" -d '{"doctor_id":"1"}'
+curl --location --request GET 'localhost:3000/api/v1/doctors/working_hours' --header "Accept: application/json" --header 'Content-Type: application/json' --data '{ "doctor_id": 1 }'
 ```
 
 ```

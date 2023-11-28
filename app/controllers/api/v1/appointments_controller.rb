@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class AppointmentsController < ApplicationController
@@ -5,17 +7,15 @@ module Api
       before_action :load_patient, only: :create
 
       def create
-        @appointment.update!(patient_id: @patient.id)
+        result = Appointments::Update.new(appointment_id: @appointment.id, params: permitted_params).call
 
-        render json: AppointmentSerializer.new(@appointment).serializable_hash.to_json, status: 201
+        render json: AppointmentSerializer.new(result).serializable_hash.to_json, status: 201
       end
 
       def update
-        attrs = permitted_params.slice(:cancelled, :appointment_date, :doctor_id).compact
+        result = Appointments::Update.new(appointment_id: @appointment.id, params: permitted_params).call
 
-        @appointment.update!(attrs) unless attrs.empty?
-
-        render json: AppointmentSerializer.new(@appointment).serializable_hash.to_json, status: 201
+        render json: AppointmentSerializer.new(result).serializable_hash.to_json, status: 201
       end
 
       def destroy

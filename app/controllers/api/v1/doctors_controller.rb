@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class DoctorsController < ApplicationController
       before_action :load_doctor
 
       def working_hours
-        render json: AvabilitySerializer.new(@doctor.avabilities).serializable_hash.to_json, status: 200
+        render json: AvabilitySerializer.new(@doctor.avabilities), status: 200
       end
 
       def available_slots
-        render json: AppointmentSerializer.new(@doctor.available_slots).serializable_hash.to_json, status: 200
+        render json: AppointmentSerializer.new(@doctor.available_slots), status: 200
       end
 
       private
